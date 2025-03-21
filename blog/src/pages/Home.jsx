@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState({ type: "", text: "" });
 
@@ -15,7 +16,7 @@ const Home = () => {
 
   const fetchBlogs = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/blog"); 
+      const { data } = await axios.get(`${API_URL}/blog`); 
       setBlogs(data.blogs || []);
     } catch (error) {
       setMessage({ type: "error", text: error.response?.data?.message || "Error fetching blogs" });

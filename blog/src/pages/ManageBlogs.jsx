@@ -7,7 +7,7 @@ const ManageBlogs = () => {
   const [formData, setFormData] = useState({ title: "", description: "", image: null });
   const [editingBlog, setEditingBlog] = useState(null);
   const [message, setMessage] = useState({ type: "", text: "" });
-
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ManageBlogs = () => {
         return;
       }
   
-      const { data } = await axios.get(`http://localhost:4000/blog/user`, {
+      const { data } = await axios.get(`${API_URL}/blog/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   
@@ -73,8 +73,8 @@ const ManageBlogs = () => {
       }
 
       const url = editingBlog
-        ? `http://localhost:4000/blog/${editingBlog._id}`
-        : "http://localhost:4000/blog";
+        ?`${API_URL}/blog/${editingBlog._id}`
+        : `${API_URL}/blog`;
 
       const method = editingBlog ? "put" : "post";
 
@@ -99,7 +99,7 @@ const ManageBlogs = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:4000/blog/${id}`, {
+      await axios.delete(`${API_URL}/blog/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -16,7 +16,8 @@ const SignUp = () => {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:4000/auth/register", {
+      const API_URL = import.meta.env.VITE_BACKEND_URL;
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),

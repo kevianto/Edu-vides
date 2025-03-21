@@ -3,13 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const Home = () => {
+const Home = ( ) => {
   const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const navigate = useNavigate();
-
+// useeffect to fetch blogs
   useEffect(() => {
     fetchBlogs();
   }, []);
